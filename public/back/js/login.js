@@ -69,12 +69,12 @@ $(function(){
         if(info.error === 1000){
           //alert('用户名不存在')
           //将表单用户名校验状态从成功更新成失败，并且给用户提示
-          $('#form').data('bootstrapValidator').updataStatus('username','INVALID','callback');
+          $('#form').data('bootstrapValidator').updateStatus('username','INVALID','callback');
         }
         if(info.error === 1001){
           //alert('密码错误')
           //将表单用户名校验状态从成功更新成失败，并且给用户提示
-          $('#form').data('bootstrapValidator').updataStatus('password','INVALID','callback');
+          $('#form').data('bootstrapValidator').updateStatus('password','INVALID','callback');
         }
       }
     })
