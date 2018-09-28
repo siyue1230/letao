@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 
 <head>
   <meta charset="UTF-8">
@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="./lib/bootstrap/css/bootstrap.css">
   <link rel="stylesheet" href="./lib/bootstrap-validator/css/bootstrapValidator.css">
   <link rel="stylesheet" href="./css/common.css">
+  <link rel="stylesheet" href="./lib/nprogress/nprogress.css">
 </head>
 
 <body>
@@ -23,6 +24,7 @@
       <img src="./images/default.png" alt="">
       <p>超级管理员</p>
     </div>
+    <!-- 导航 -->
     <div class="nav">
       <ul>
         <li>
@@ -32,7 +34,7 @@
           </a>
         </li>
         <li>
-          <a href="#">
+          <a href="javascript:;" class="category">
             <i class="glyphicon glyphicon-list"></i>
             <span>分类管理</span>
           </a>
@@ -42,7 +44,7 @@
           </div>
         </li>
         <li>
-          <a href="#">
+          <a href="product.html">
             <i class="glyphicon glyphicon-tags"></i>
             <span>商品管理</span>
           </a>
@@ -50,6 +52,7 @@
       </ul>
     </div>
   </div>
+  <!-- 右侧主体部分 -->
   <div class="lt_main">
     <div class="lt_topbar">
       <a href="javascript:;" class="pull-left icon_menu">
@@ -59,40 +62,81 @@
           <i class="glyphicon glyphicon-log-out"></i>
         </a>
     </div>
+    <!-- 底部容器，container-fluid 流式布局容器 -->
     <div class="container-fluid">
       <!-- 面包屑导航，路径导航 -->
         <ol class="breadcrumb">
-            <li><a href="index.html">管理系统</a></li>
-            <li class="active">首页</li>
-          </ol>
+          <li><a href="index.html">管理系统</a></li>
+          <li class="active">用户管理</li>
+        </ol>
+        <div class="lt_content">
+          <table class="table table-bordered table-hover">
+            <thead>
+              <tr>
+                <th>序号</th>
+                <th>用户名</th>
+                <th>手机号</th>
+                <th>状态</th>
+                <th>操作</th>
+              </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+          </table>
+          <div class="text-right">
+            <ul id="paginator"></ul>
+          </div>
+        </div>
     </div>
   </div>
-
-  <div class="modal fade" tabindex="-1" role="dialog">
-      <div class="modal-dialog" role="document">
+  <!-- 模态框 -->
+  <div class="modal fade" tabindex="-1" id="logoutModal">
+      <div class="modal-dialog modal-sm">
         <div class="modal-content">
           <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title">Modal title</h4>
+            <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+            <h4 class="modal-title">温馨提示</h4>
           </div>
           <div class="modal-body">
-            <p>One fine body&hellip;</p>
+            <p class="red"><i class="glyphicon glyphicon-info-sign"></i> 您确定要退出后台管理系统吗？</p>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Save changes</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+            <button type="button" class="btn btn-primary" id="logoutBtn">退出</button>
           </div>
         </div><!-- /.modal-content -->
       </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
 
+  <script type="text/html" id="tpl">
+    {{ each rows v i }}
+      <tr>
+        <td>{{ i + 1 + (page-1) * size }}}</td>
+        <td>{{ v.username}}</td>
+        <td>{{ v.mobile }}</td>
+        <td>{{ v.isDelete === 1 ? "正常" : "已禁用"}}</td>
+        <td>
+          {{ if v.isDelete === 1 }}
+          <button class="btn btn-danger">禁用</button>
+          {{ /if }}
+          {{ if v.isDelete === 0}}
+          <button class="btn btn-success">启用</button>
+          {{ /if }}
+        </td>
+      </tr>
+    {{ /each }}
+  </script>
+
   <script src="./lib/jquery/jquery.min.js"></script>
   <script src="./lib/bootstrap-validator/js/bootstrapValidator.min.js"></script>
   <script src="./lib/bootstrap/js/bootstrap.js"></script>
-  <script src="./js/login.js"></script>
   <script src="./js/common.js"></script>
+  <script src="./lib/artTemplate/template-web.js"></script>
   <script src="./lib/nprogress/nprogress.js"></script>
   <script src="./js/checkLogin.js"></script>
+  <script src="./js/user.js"></script>
+  <script src="./lib/bootstrap-paginator/bootstrap-paginator.min.js"></script>
 </body>
 
 </html>
