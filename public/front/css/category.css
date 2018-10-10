@@ -1,0 +1,20 @@
+.lt_category_left{
+  float: left;
+  width: 90px;
+  height: 100%;
+  background-color: skyblue;
+  position: relative;
+}
+.lt_category_right{
+  overflow: hidden;
+  height: 100%;
+  background-color: pink;
+  position: relative;
+}
+.lt_category_left li a{
+  width: 90px;
+  height: 50px;
+  display: block;
+  text-align: center;
+  line-height: 50px;
+}
