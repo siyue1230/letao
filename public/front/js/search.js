@@ -46,9 +46,6 @@ $(function(){
         render();
       }
     });
-
-
-    
   })
 
   //功能3.删除单条历史记录：删除是数组中的某一项
@@ -63,6 +60,35 @@ $(function(){
     arr.splice(index, 1);
     localStorage.setItem('search_list',JSON.stringify(arr));
     render();
+  })
+
+  //功能4.添加历史记录功能
+  //(1) 给搜索按钮添加点击事件
+  //(2) 获取输入框的内容，添加到数组的最前面
+  //(3) 将修改后的数组，转成jsonStr，存储到本地
+  //(4) 重新渲染
+  $('.search_btn').click(function(){
+    var key = $('.search_input').val().trim();
+    if( key === ""){
+      mui.toast('请输入搜索关键字');
+      return;
+    }
+    var arr = getHistory();
+    //需求1.如果已经有重复项（index!=-1），删除重复项
+    //需求2.如果长度超过10，删除最后一项（最早的一条）
+    var index = arr.indexOf(key);
+    if( index != -1){
+      arr.splice( index , 1 );
+    }
+    if( arr.length > 10 ){
+      arr.pop();
+    }
+
+    arr.unshift( key );
+    localStorage.setItem('search_list',JSON.stringify( arr ));
+    render();
+    //清空搜索框
+    $('.search_input').val('');
   })
 
 })
