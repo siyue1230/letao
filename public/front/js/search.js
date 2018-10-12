@@ -89,6 +89,7 @@ $(function(){
     render();
     //清空搜索框
     $('.search_input').val('');
+    location.href = "searchList.html?key=" + key;
   })
 
 })

@@ -9,24 +9,3 @@
   display: block;
 }
 
-.lt_product{
-  padding: 10px;
-}
-.lt_product li{
-  float: left;
-  width: 48%;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  margin-bottom: 15px;
-  padding: 10px;
-  text-align: center;
-}
-.lt_product li:nth-child(2n-1){
-  margin-right:4%;
-}
-.lt_product .price{
-  color: red;
-}
-.lt_product .oldPrice{
-  text-decoration: line-through;
-}
